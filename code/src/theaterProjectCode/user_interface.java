@@ -25,7 +25,7 @@ public class user_interface {
 		 */
 		do {
 			command = reader.nextLine();
-			System.out.printf("The command you entered is: %s \n", command);
+			System.out.printf("The command you entered is: %s %n", command);
 			// check for valid user input command
 			if (commandManager.validateCommand(command)) {
 				System.out.println("Valid Command! Running...");
@@ -68,17 +68,18 @@ public class user_interface {
 	public static void printInstructions() {
 		System.out.println();
 		System.out.println("Commands currently available:");
-		String str = "         ________________________________________________________________   " + "\n"
-				+ "        / newAccount     / listAccounts   / clearAccountsData  / login  /   " + "\n"
-				+ "       / newAdmin       / listTheaters   / clearTheatersData  / logout /    " + "\n"
-				+ "      / newEmployee    / listShowtimes  / clearShowtimesData / exit   /     " + "\n"
-				+ "     / newTheater     / viewAccount    / updateAccountsData /        /      " + "\n"
-				+ "    / newShowtime    / viewTheater    / updateTheatersData /        /       " + "\n"
-				+ "   / deleteAccount  / viewShowtime   /updateShowtimesData /        /        " + "\n"
-				+ "  / deleteTheater  / purchaseTicket /                    /        /         " + "\n"
-				+ " / deleteShowtime / addBalance     /                    /        /         " + "\n"
-				+ "/________________/________________/____________________/________/          " + "\n"
-				+ "                                                                                                         ";
+		String str ="""
+                    ________________________________________________________________ 
+                   / newAccount     / listAccounts   / clearAccountsData  / login  /   
+                  / newAdmin       / listTheaters   / clearTheatersData  / logout /   
+                 / newEmployee    / listShowtimes  / clearShowtimesData / exit   /     
+                / newTheater     / viewAccount    / updateAccountsData /        /     
+               / newShowtime    / viewTheater    / updateTheatersData /        /      
+              / deleteAccount  / viewShowtime   /updateShowtimesData /        /       
+             / deleteTheater  / purchaseTicket /                    /        /        
+            / deleteShowtime / addBalance     /                    /        /        
+           /________________/________________/____________________/________/         
+       """;
 		System.out.println(str);
 	}
 	/*
