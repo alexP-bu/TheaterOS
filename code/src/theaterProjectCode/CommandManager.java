@@ -254,7 +254,6 @@ public class CommandManager {
 	 */
 	public void returning() {
 		System.out.println("Returning to main menu...");
-		user_interface.wait(1);
 		runCommand("main");
 	}
 }

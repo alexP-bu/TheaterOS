@@ -185,7 +185,6 @@ public class AccountManager {
 		if (loggedIn != null) {
 			if (loggedIn.getType().equals("administrator")) {
 				System.out.println("Access Granted...");
-				user_interface.wait(1);
 				System.out.println("...");
 				System.out.println("Please enter the account username for deletion: ");
 				String username = getUsernameInput();
