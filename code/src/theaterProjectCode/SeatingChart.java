@@ -55,7 +55,7 @@ public class SeatingChart implements Serializable {
 	 * reserve seat in Seating Chart with no account
 	 */
 	public boolean reserveSeat(char row, int column) {
-		if (seats[((int) Character.toUpperCase(row)) - 65][column].is_reserved()) {
+		if (seats[((int) Character.toUpperCase(row)) - 65][column].isReserved()) {
 			System.out.println("Seat is already reserved!");
 			return false;
 		}
@@ -82,7 +82,7 @@ public class SeatingChart implements Serializable {
 	public boolean hasEmptySeats() {
 		for (int i = 0; i < seats.length; i++) {
 			for (int j = 0; j < seats[0].length; j++) {
-				if (!(seats[i][j].is_reserved())) {
+				if (!(seats[i][j].isReserved())) {
 					return true;
 				}
 			}
