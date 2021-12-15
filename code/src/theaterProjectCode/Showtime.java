@@ -1,9 +1,8 @@
 package theaterProjectCode;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Showtime implements Serializable{
+public class Showtime{
 	private Movie movie;
 	private Date date;
 	private HashMap<String,Theater> theaters;
@@ -38,6 +37,9 @@ public class Showtime implements Serializable{
 	 */
 	public void addTheater(Theater theater) {
 		theaters.put(theater.getTheaterID(), theater);
+	}
+	public double getTicketPrice(){
+		return price;
 	}
 	/*
 	 * get theater by ID, returns a null theater if it doesnt exist
