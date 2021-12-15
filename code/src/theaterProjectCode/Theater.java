@@ -24,6 +24,10 @@ public class Theater{
 		readTheaterSettings();
 		this.seatingChart = new Seat[defaultRows][defaultCols];
 	}
+	//return theater ID
+	public String getTheaterID(){
+		return theaterID;
+	}
 	/*
 	 * check if theater has empty seatsl
 	 */
