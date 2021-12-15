@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account implements Serializable {
-
-	/**
-	 * serialization ID
-	 */
-	private static final long serialVersionUID = -6525670258139946755L;
 	private String username;
 	private String password;
 	protected int credit;
