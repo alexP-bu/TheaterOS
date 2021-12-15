@@ -136,7 +136,7 @@ public class Showtime implements Serializable{
 	 * get theater by ID, returns a null theater if it doesnt exist
 	 */
 	public Theater getTheaterByID(String ID) {
-		if(this.theaters.isEmpty() || (this.theaters == null)) {
+		if(this.theaters.isEmpty()) {
 			System.out.println("No theaters in local system, please add a theater");
 			return new Theater();
 		}else {
@@ -165,20 +165,20 @@ public class Showtime implements Serializable{
 	}
 	/*
 	 *test harness code 
-	 * 
+	 */
 	public static void main(String[] args) {
 		Showtime show1 = new Showtime();
-		show1.set_date(new Date());
-		show1.set_movie("Endgame");
+		show1.setDate(new Date());
+		show1.setName("Endgame");
 		//test printing
 		System.out.println(show1.toString());
 		//create some default theaters to store
-		Theater theater1 = new Theater(1);
-		Theater theater2 = new Theater(2);
+		Theater theater1 = new Theater();
+		Theater theater2 = new Theater();
 		//add two theaters
 		show1.addTheater(theater1);
 		show1.addTheater(theater2);
 		System.out.println("Showtime info:");
 		System.out.println(show1.toString());
-	}*/
+	}
 }

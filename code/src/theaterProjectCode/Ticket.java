@@ -3,10 +3,6 @@ package theaterProjectCode;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = -4034562731486809874L;
 	private Showtime show;
 	private String theater;
 	private Seat seat;
