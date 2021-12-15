@@ -3,10 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Showtime implements Serializable{
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = 8986433822983659960L;
 	private String name;
 	private Date date;
 	private ArrayList<Theater> theaters;
