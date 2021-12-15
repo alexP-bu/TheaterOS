@@ -1,8 +1,5 @@
 package theaterProjectCode;
-
-import java.io.Serializable;
-
-public class Ticket implements Serializable {
+public class Ticket{
 	private String showtimeID;
 	private String theaterID;
 	private String seatID;
