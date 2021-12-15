@@ -1,67 +1,68 @@
 package theaterProjectCode;
 
-import java.io.Serializable;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
-public class Theater implements Serializable{
-	/**
-	 * serializable session ID
-	 */
-	private static final long serialVersionUID = 6287745973157089822L;
+public class Theater{
 	private String theaterID;
-	private SeatingChart seatingChart;
-	
+	private Seat[][] seatingChart;
+	private static final File settings = new File("theater_settings.txt");
+	private int defaultRows = 10;
+	private int defaultCols = 10;
+
 	/*
 	 *constructors 
 	 */
-	public Theater(String id, SeatingChart seatingChart) {
+	public Theater(String id, Seat[][] seatingChart) {
 		this.theaterID = id;
 		this.seatingChart = seatingChart;
 	}
+	//create theater with default seating chart
 	public Theater(String id) {
 		this.theaterID = id;
-		this.seatingChart = null;
+		readTheaterSettings();
+		this.seatingChart = new Seat[defaultRows][defaultCols];
 	}
 	/*
-	 * construct theater with empty seating chart
+	 * check if theater has empty seatsl
 	 */
-	public Theater() {
-		this.theaterID = "";
-		this.seatingChart = null;
-	}
-	/*
-	 * getters and setters
-	 */
-	public String getTheaterID() {
-		return theaterID;
-	}
-	public void setTheaterID(String theaterID) {
-		this.theaterID = theaterID;
-	}
-	public SeatingChart getSeatingChart() {
-		return seatingChart;
-	}
-	public void setSeatingChart(SeatingChart seats) {
-		this.seatingChart = seats;
-	}
-	
-	/*
-	 * check if theater is full
-	 */
-	public boolean isFull() {
-		if(seatingChart.hasEmptySeats()) {
-			return false;
+	public boolean hasEmptySeats() {
+		for(Seat[] seatRows : seatingChart){
+			for(Seat seat : seatRows){
+				if (!seat.isReserved()){
+					return true;
+				}
+			}
 		}
-		return true;
+		return false;
 	}
-	
-	/*
-	 * other methods
-	 */
+	//read settings file
+	public void readTheaterSettings(){
+		if((settings.exists()) && (settings.length() > 0)){
+			try (BufferedReader reader = new BufferedReader(new FileReader(settings))){
+				defaultRows  = Integer.parseInt(reader.readLine());
+				defaultCols = Integer.parseInt(reader.readLine());
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+
 	@Override
 	public String toString() {
-		return       "***********************************"  + "\n" + 
-				     "      THEATER " + this.getTheaterID() + "\n" + 
-					 "***********************************"  + "\n" +
-				     seatingChart.toString();
+		StringBuilder sout = new StringBuilder();
+		sout.append("***********************************"  + "\n");
+		sout.append("       THEATER " + theaterID 		   + "\n"); 
+		sout.append("***********************************"  + "\n");
+		for(Seat[] row : seatingChart){
+			sout.append(row + "\n");
+		}
+		return sout.toString();
+	}
+
+	public static void main(String[] args) {
+		Theater theater = new Theater("1");
+		System.out.println(theater.toString());
 	}
 }

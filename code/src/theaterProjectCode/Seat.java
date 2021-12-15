@@ -1,104 +1,27 @@
 package theaterProjectCode;
-
-import java.io.Serializable;
-
-public class Seat implements Serializable {
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = 2283190859901058721L;
-	private char row;
-	private int column;
-	private Account reservedBy;
-
+public class Seat{
+	private boolean isReserved;
 	/*
 	 * constructors
 	 */
 
-	public Seat(char row, int column, Account account) {
-		this.row = row;
-		this.column = column;
-		this.reservedBy = account;
-	}
-
-	public Seat(char row, int column) {
-		this.row = row;
-		this.column = column;
-		this.reservedBy = null;
-	}
-
 	public Seat() {
-		this.row = 0;
-		this.column = 0;
-		this.reservedBy = null;
+		this.isReserved = false;
 	}
-
-	/*
-	 * getters
-	 */
-	public char getRow() {
-		return this.row;
-	}
-
-	public int getColumn() {
-		return this.column;
-	}
-
-	public Account getReservedBy() {
-		return this.reservedBy;
-	}
-
+	// check if seat is reserved
 	public boolean isReserved() {
-		if (this.getReservedBy() != null) {
-			return true;
-		}
-		return false;
+		return isReserved;
 	}
-
-	/*
-	 * setters/mutators
-	 */
-	public void setRow(char row) {
-		this.row = row;
+	//setter for reserved
+	public void reserve(boolean reserved){
+		isReserved = reserved;
 	}
-
-	public void setColumn(int column) {
-		this.column = column;
-	}
-
-	/*
-	 * function to reserve seat given with account
-	 */
-	public boolean reserveSeat(Account account) {
-		if (this.reservedBy == null) {
-			this.reservedBy = account;
-			System.out.printf("Seat successfully reserved by %s", account.getUsername());
-			return true;
-		} else {
-			System.out.println("Seat already reserved. Please select a different seat!");
-			return false;
-		}
-	}
-
-	/*
-	 * function to reserve seat without account - use guest account
-	 */
-	public boolean reserveSeat() {
-		if (this.reservedBy == null) {
-			this.reservedBy = new Account();
-			System.out.println("Seat successfully reserved.");
-			return true;
-		} else {
-			System.out.println("Seat already reserved. Please select a different seat!");
-			return false;
-		}
-	}
-
+	
 	@Override
 	public String toString() {
-		if (this.reservedBy != null) {
+		if(isReserved){
 			return "[X]";
-		} else {
+		}else {
 			return "[O]";
 		}
 	}

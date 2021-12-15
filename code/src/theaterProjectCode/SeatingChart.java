@@ -3,10 +3,6 @@ package theaterProjectCode;
 import java.io.Serializable;
 
 public class SeatingChart implements Serializable {
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = 8611123495243223849L;
 	private Seat[][] seats;
 
 	/*
@@ -40,30 +36,12 @@ public class SeatingChart implements Serializable {
 		}
 	}
 
-	/*
-	 * getters/setters
-	 */
-	public Seat[][] getSeats() {
-		return seats;
-	}
-
-	public void setSeats(Seat[][] seats) {
-		this.seats = seats;
-	}
 
 	/*
 	 * reserve seat in Seating Chart with no account
 	 */
 	public boolean reserveSeat(char row, int column) {
-		if (seats[((int) Character.toUpperCase(row)) - 65][column].isReserved()) {
-			System.out.println("Seat is already reserved!");
-			return false;
-		}
-		if (seats[((int) Character.toUpperCase(row)) - 65][column].reserveSeat()) {
-			return true;
-		}
-		System.out.println("Error reserving seat in seating chart.");
-		return false;
+		if(seats[row][column].)
 	}
 
 	/*
