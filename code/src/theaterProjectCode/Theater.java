@@ -48,7 +48,6 @@ public class Theater{
 			}
 		}
 	}
-
 	@Override
 	public String toString() {
 		StringBuilder sout = new StringBuilder();
@@ -60,7 +59,6 @@ public class Theater{
 		}
 		return sout.toString();
 	}
-
 	public static void main(String[] args) {
 		Theater theater = new Theater("1");
 		System.out.println(theater.toString());
