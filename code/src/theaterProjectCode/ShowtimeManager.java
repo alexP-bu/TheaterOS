@@ -93,7 +93,7 @@ public class ShowtimeManager {
 				if(ID.equals("exit")) {
 					break;
 				}else {
-					ID = theaterManager.get_valid_theater(ID);
+					ID = theaterManager.getValidTheater(ID);
 					showtimeTheaters.add(theaterManager.getTheaters().get(ID));
 				}
 				} while(true);

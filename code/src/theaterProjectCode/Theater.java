@@ -13,12 +13,12 @@ public class Theater implements Serializable{
 	/*
 	 *constructors 
 	 */
-	public Theater(String ID, SeatingChart seatingChart) {
-		this.theaterID = ID;
+	public Theater(String id, SeatingChart seatingChart) {
+		this.theaterID = id;
 		this.seatingChart = seatingChart;
 	}
-	public Theater(String ID) {
-		this.theaterID = ID;
+	public Theater(String id) {
+		this.theaterID = id;
 		this.seatingChart = null;
 	}
 	/*
@@ -59,10 +59,9 @@ public class Theater implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		String str = "***********************************"  + "\n" + 
+		return       "***********************************"  + "\n" + 
 				     "      THEATER " + this.getTheaterID() + "\n" + 
 					 "***********************************"  + "\n" +
 				     seatingChart.toString();
-		return str;
 	}
 }

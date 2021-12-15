@@ -42,34 +42,34 @@ public class Date implements Serializable{
 	 * getters and setters
 	 */
 	
-	public int get_month() {
+	public int getMonth() {
 		return month;
 	}
-	public void set_month(int month) {
+	public void setMonth(int month) {
 		this.month = month;
 	}
-	public int get_day() {
+	public int getDay() {
 		return day;
 	}
-	public void set_day(int day) {
+	public void setDay(int day) {
 		this.day = day;
 	}
-	public int get_year() {
+	public int getYear() {
 		return year;
 	}
-	public void set_year(int year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
-	public int get_hours() {
+	public int getHours() {
 		return hours;
 	}
-	public void set_hours(int hours) {
+	public void setHours(int hours) {
 		this.hours = hours;
 	}
-	public int get_minutes() {
+	public int getMinutes() {
 		return minutes;
 	}
-	public void set_minutes(int minutes) {
+	public void setMinutes(int minutes) {
 		this.minutes = minutes;
 	}
 	/*
@@ -77,16 +77,16 @@ public class Date implements Serializable{
 	 */
 	public Date createDate() {
 		System.out.println("Enter year number when showtime is on: ");
-		int year = getNumInput();
+		int years = getNumInput();
 		System.out.println("Enter month number when showtime is on: ");
-		int month = getNumInput();
+		int months = getNumInput();
 		System.out.println("Enter date number when showtime is on: ");
-		int day = getNumInput();
+		int days = getNumInput();
 		System.out.println("Enter hour number when showtime is on (24 hour clock): ");
 		int hour = getNumInput();
 		System.out.println("Enter minutes when showtimes is on: ");
 		int minute = getNumInput();
-		return new Date(month, day, year, hour, minute);
+		return new Date(months, days, years, hour, minute);
 	}
 	/*
 	 * get number from user

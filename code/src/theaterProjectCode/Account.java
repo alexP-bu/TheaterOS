@@ -2,6 +2,7 @@ package theaterProjectCode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Account implements Serializable {
 
@@ -16,7 +17,7 @@ public class Account implements Serializable {
 	private String type;
 	private double balance;
 	private int rewardsPoints;
-	private ArrayList<Ticket> purchaseHistory;
+	private List<Ticket> purchaseHistory;
 
 	/*
 	 * constructors
@@ -34,9 +35,10 @@ public class Account implements Serializable {
 	}
 
 	public Account() {
-		this.setUsername("guest");
-		this.setPassword("guest");
-		this.setType("guest");
+		String g = "guest";
+		this.setUsername(g);
+		this.setPassword(g);
+		this.setType(g);
 		this.setBalance(0.00);
 	}
 
@@ -100,11 +102,11 @@ public class Account implements Serializable {
 		this.rewardsPoints = rewardsPoints;
 	}
 
-	public ArrayList<Ticket> getPurchaseHistory() {
+	public List<Ticket> getPurchaseHistory() {
 		return purchaseHistory;
 	}
 
-	public void setPurchaseHistory(ArrayList<Ticket> purchaseHistory) {
+	public void setPurchaseHistory(List<Ticket> purchaseHistory) {
 		this.purchaseHistory = purchaseHistory;
 	}
 

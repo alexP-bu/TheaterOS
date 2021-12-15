@@ -32,35 +32,35 @@ public class Ticket implements Serializable {
 	 * getters/setters
 	 */
 
-	public Showtime get_show() {
+	public Showtime getShow() {
 		return show;
 	}
 
-	public void set_show(Showtime show) {
+	public void setShow(Showtime show) {
 		this.show = show;
 	}
 
-	public Seat get_seat() {
+	public Seat getSeat() {
 		return seat;
 	}
 
-	public void set_seat(Seat seat) {
+	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
 
-	public double get_price() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void set_price(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public Date get_datePurchased() {
+	public Date getDatePurchased() {
 		return datePurchased;
 	}
 
-	public void set_datePurchased(Date datePurchased) {
+	public void setDatePurchased(Date datePurchased) {
 		this.datePurchased = datePurchased;
 	}
 
@@ -76,5 +76,4 @@ public class Ticket implements Serializable {
 	public String toString() {
 		return "\n" + this.show.getName() + " Showing on " + this.show.getDate() + "\nPrice: " + this.show.getPrice();
 	}
-
 }

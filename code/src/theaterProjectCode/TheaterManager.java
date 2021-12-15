@@ -7,36 +7,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class TheaterManager implements Serializable {
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = -666950663352349624L;
-	private HashMap<String, Theater> theaters;
+public class TheaterManager{
+	private Map<String, Theater> theaters;
 	private Scanner reader = new Scanner(System.in);
-	private File theaters_data = new File("theaters.ser");
+	private File theatersData = new File("theaters.ser");
 
 	/*
 	 * constructors
 	 */
 	public TheaterManager() {
 		this.setTheaters(new HashMap<String, Theater>());
-		// if database file doesn't exist, create a new one
-		try {
-			if (!theaters_data.exists()) {
-				theaters_data.createNewFile();
+		try{
+			if(theatersData.createNewFile()){
+				System.out.println("Created new file");
 			}
-		} catch (Exception e) {
+		} catch (IOException e){
 			e.printStackTrace();
 		}
 		// import database file
 		try {
-			this.importTheaters(theaters_data);
+			this.importTheaters(theatersData);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,11 +39,11 @@ public class TheaterManager implements Serializable {
 	/*
 	 * getters/setters
 	 */
-	public HashMap<String, Theater> getTheaters() {
+	public Map<String, Theater> getTheaters() {
 		return theaters;
 	}
 
-	public void setTheaters(HashMap<String, Theater> theaters) {
+	public void setTheaters(Map<String, Theater> theaters) {
 		this.theaters = theaters;
 	}
 
@@ -87,7 +81,7 @@ public class TheaterManager implements Serializable {
 			this.theaters.remove(theater.getTheaterID());
 			System.out.println("Successfully deleted theater from system.");
 			// update database
-			exportTheaters(theaters_data);
+			exportTheaters(theatersData);
 			return true;
 		} else {
 			System.out.println("Error deleting theater, theater not found!");
@@ -99,16 +93,16 @@ public class TheaterManager implements Serializable {
 	 * delete theater by ID if successful, returns true. false otherwise
 	 */
 	public boolean deleteTheater() {
-		if (theaters.isEmpty() || theaters == null) {
+		if (theaters.isEmpty()) {
 			return false;
 		}
 		System.out.println("Enter ID of theater to delete:");
 		String ID = reader.nextLine();
-		ID = get_valid_theater(ID);
+		ID = getValidTheater(ID);
 		this.theaters.remove(ID);
 		System.out.println("Successfully deleted theater from system.");
 		// update database
-		exportTheaters(theaters_data);
+		exportTheaters(theatersData);
 		return true;
 	}
 
@@ -124,7 +118,7 @@ public class TheaterManager implements Serializable {
 			ID = reader.nextLine();
 		}
 		theater.setTheaterID(ID);
-		System.out.printf("Use the default seating chart for theater %s? \n", theater.getTheaterID());
+		System.out.printf("Use the default seating chart for theater %s? %n", theater.getTheaterID());
 		System.out.println("yes/no");
 		if (reader.nextLine().equals("yes")) {
 			theater.setSeatingChart(new SeatingChart());
@@ -138,7 +132,7 @@ public class TheaterManager implements Serializable {
 		}
 		this.addTheater(theater);
 		// update database
-		exportTheaters(theaters_data);
+		exportTheaters(theatersData);
 		System.out.println("Successfully added theater configuration to system.");
 	}
 
@@ -146,12 +140,12 @@ public class TheaterManager implements Serializable {
 	 * view theater information
 	 */
 	public void viewTheater() {
-		if (this.theaters.isEmpty() || (this.theaters == null)) {
+		if (this.theaters.isEmpty()) {
 			System.out.println("No theaters in local system, please add a theater");
 		} else {
 			System.out.println("Please enter theater ID:");
 			String ID = reader.nextLine();
-			ID = this.get_valid_theater(ID);
+			ID = this.getValidTheater(ID);
 			System.out.println(this.theaters.get(ID).toString());
 		}
 	}
@@ -159,35 +153,35 @@ public class TheaterManager implements Serializable {
 	/*
 	 * view theater using ID
 	 */
-	public void viewTheater(String ID) {
-		if (this.theaters.isEmpty() || (this.theaters == null)) {
+	public void viewTheater(String id) {
+		if (this.theaters.isEmpty()) {
 			System.out.println("No theaters in local system, please add a theater");
 		} else {
 			System.out.println("Please enter theater ID:");
-			ID = reader.nextLine();
-			ID = this.get_valid_theater(ID);
-			System.out.println(this.theaters.get(ID).toString());
+			id = reader.nextLine();
+			id = this.getValidTheater(id);
+			System.out.println(this.theaters.get(id).toString());
 		}
 	}/*
 		 * test if theater ID is valid. Keep going until user returns valid ID.
 		 */
 
-	public String get_valid_theater(String ID) {
-		while (!theaters.containsKey(ID)) {
+	public String getValidTheater(String id) {
+		while (!theaters.containsKey(id)) {
 			System.out.println("Please enter a valid theater ID. Available Theaters:");
 			this.listTheaters();
-			ID = reader.next();
+			id = reader.next();
 		}
 		System.out.println("valid theater ID entered...");
-		return ID;
+		return id;
 	}
 
 	/*
 	 * reserve seat in theater given valid theater ID, column, and row - returns
 	 * true on success false on failure.
 	 */
-	public boolean reserveSeat(String ID, char row, int column) {
-		if (this.theaters.get(ID).getSeatingChart().reserveSeat(row, column)) {
+	public boolean reserveSeat(String id, char row, int column) {
+		if (this.theaters.get(id).getSeatingChart().reserveSeat(row, column)) {
 			return true;
 		}
 		return false;
@@ -196,8 +190,8 @@ public class TheaterManager implements Serializable {
 	/*
 	 * reserve seat with all inputs with account
 	 */
-	public boolean reserveSeat(char row, int col, String ID, Account account) {
-		if (theaters.get(ID).getSeatingChart().reserveSeat(row, col, account)) {
+	public boolean reserveSeat(char row, int col, String id, Account account) {
+		if (theaters.get(id).getSeatingChart().reserveSeat(row, col, account)) {
 			return true;
 		}
 		return false;
@@ -292,7 +286,7 @@ public class TheaterManager implements Serializable {
 	 */
 	public void clearTheatersDatabaseFile() {
 		try {
-			FileOutputStream clear = new FileOutputStream(theaters_data);
+			FileOutputStream clear = new FileOutputStream(theatersData);
 			clear.close();
 			System.out.println("Theaters database file cleared!");
 		} catch (Exception e) {
@@ -301,7 +295,7 @@ public class TheaterManager implements Serializable {
 	}
 
 	public File getFile() {
-		return theaters_data;
+		return theatersData;
 	}
 	/*
 	 * test harness

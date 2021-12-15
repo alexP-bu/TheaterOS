@@ -15,7 +15,7 @@ public class Seat implements Serializable {
 	 * constructors
 	 */
 
-	public Seat(Showtime show, char row, int column, Account account) {
+	public Seat(char row, int column, Account account) {
 		this.row = row;
 		this.column = column;
 		this.reservedBy = account;
@@ -48,7 +48,7 @@ public class Seat implements Serializable {
 		return this.reservedBy;
 	}
 
-	public boolean is_reserved() {
+	public boolean isReserved() {
 		if (this.getReservedBy() != null) {
 			return true;
 		}
@@ -72,7 +72,7 @@ public class Seat implements Serializable {
 	public boolean reserveSeat(Account account) {
 		if (this.reservedBy == null) {
 			this.reservedBy = account;
-			// System.out.printf("Seat successfully reserved by %s", account.getUsername());
+			System.out.printf("Seat successfully reserved by %s", account.getUsername());
 			return true;
 		} else {
 			System.out.println("Seat already reserved. Please select a different seat!");
