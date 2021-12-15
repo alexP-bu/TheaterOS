@@ -4,10 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Date implements Serializable{
-	/**
-	 * id
-	 */
-	private static final long serialVersionUID = -496635546555161762L;
 	private transient Scanner reader = new Scanner(System.in);
 	private int month;
 	private int day;
