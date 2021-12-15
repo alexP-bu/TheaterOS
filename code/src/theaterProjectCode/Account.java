@@ -1,10 +1,9 @@
 package theaterProjectCode;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account implements Serializable {
+public class Account{
 	private String username;
 	private String password;
 	private String type;
@@ -28,6 +27,13 @@ public class Account implements Serializable {
 	 */
 	public void addTicket(Ticket ticket) {
 		purchaseHistory.add(ticket);
+	}
+	//get account password
+	public String getPassword(){
+		return password;
+	}
+	public String getType(){
+		return type;
 	}
 
 	@Override
