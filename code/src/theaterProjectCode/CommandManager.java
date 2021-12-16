@@ -199,7 +199,7 @@ public class CommandManager {
 			returning();
 			break;
 		case "main":
-			user_interface.printInstructions();
+			userInterface.printInstructions();
 			System.out.println("Enter \"exit\" to exit the program");
 			break;
 		case "purchaseTicket":
