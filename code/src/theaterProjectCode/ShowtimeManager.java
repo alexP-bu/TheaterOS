@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShowtimeManager {
-	Scanner reader = new Scanner(System.in);
 	private ArrayList<Showtime> showtimes;
 	private TheaterManager theaterManager;
 	private File showtimes_data = new File("showtimes.ser");
@@ -130,79 +129,7 @@ public class ShowtimeManager {
 			System.out.println(showtimes.get(selected).toString());
 		}
 	}
-	/*
-	 * get valid number input from user
-	 */
-	private int getNumInput() {
-		int input = 0;
-		do {
-			try {
-				input = Integer.parseInt(reader.nextLine());
-				break;
-			} catch (NumberFormatException e) {
-				System.out.println(e);
-			}
-			System.out.println("invalid input entered! try again");
-		}while(true);	
-		return input;
-	}
-	private double getPriceInput() {
-		double input = 0;
-		do {
-			try {
-				input = Double.parseDouble(reader.nextLine());
-					break;
-				} catch (NumberFormatException e) {
-					System.out.println(e);
-				}
-				System.out.println("invalid input entered! try again FORMAT: 25.35");
-			}while(true);
-		return input;
-	}
-	/*
-	 * get double input
-	 */
-	public double getPrice() {
-		System.out.println("Enter dollars amount: ");
-		return getPriceInput();
-	}
-	/*
-	 * get valid show time by ID from user input
-	 */
-	public int getValidShowtimeID() {
-		this.listShowtimes();
-		System.out.println("Select showtime by index next to it.");
-		int selected = getNumInput();
-		while(selected > showtimes.size()) {
-			System.out.println("Please enter a valid value!");
-			selected = getNumInput();
-		}
-		return (selected - 1);
-	}
-	/*
-	 * get yes/no from user input
-	 */
-	public String getYesNo() {
-		System.out.println("yes/no");
-		String input = reader.nextLine();
-		do {
-			if(input.equals("yes") || input.equals("no")) {
-				break;
-			}
-			System.out.println("Please enter valid response:");
-			input = reader.nextLine();
-			} while(!(input.equals("yes") || (input.equals("no"))));
-		return input;
-	}
-	/*
-	 * check if there are no showtimes available
-	 */
-	public boolean isEmpty() {
-		if(showtimes.isEmpty() || showtimes == null) {
-			return true;
-		}
-		return false;
-	}
+
 	/*
 	 * database methods for showtimes
 	 */
@@ -270,24 +197,5 @@ public class ShowtimeManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public File getFile() {
-		return showtimes_data;
-	}
-	/*
-	 * test harness code
-	 */
-	public static void main(String[] args) {
-		ShowtimeManager showtimes = new ShowtimeManager(new TheaterManager());
-		Showtime show1 = new Showtime(new Date(), "Endgame", new ArrayList<Theater>(List.of(new Theater("1"), new Theater("2"), new Theater("3"))), 1 ,"R", 21.00,1);
-		Showtime show2 = new Showtime(new Date(), "Infinity War", new ArrayList<Theater>(List.of(new Theater("4"), new Theater("5"))), 1 ,"R", 21.00,1);
-		Showtime show3 = new Showtime(new Date(), "Breaking Bad", new ArrayList<Theater>(List.of(new Theater("6"))), 1 ,"R", 21.00,1);
-		Showtime show4 = new Showtime(new Date(), "The Simpsons", new ArrayList<Theater>(List.of(new Theater("7"), new Theater("8"), new Theater("9"))), 1 ,"R", 21.00,1);
-		showtimes.addShowtime(show1);
-		showtimes.addShowtime(show2);
-		showtimes.addShowtime(show3);
-		showtimes.addShowtime(show4);
-		showtimes.listShowtimes();
 	}
 }
