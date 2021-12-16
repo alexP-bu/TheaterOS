@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AccountManager {
-
 	private HashMap<String, Account> accountList;
 	private Account loggedIn;
 	private File accountsFile;

@@ -5,7 +5,7 @@ import java.util.Map;
 public class Showtime{
 	private Movie movie;
 	private Date date;
-	private HashMap<String,Theater> theaters;
+	private Map<String,Theater> theaters;
 	private double price;
 	/*
 	 * constructors

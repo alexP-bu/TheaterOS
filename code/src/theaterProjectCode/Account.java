@@ -11,16 +11,41 @@ public class Account{
 	private int rewardsPoints;
 	private List<Ticket> purchaseHistory;
 
-	/*
-	 * constructors
-	 */
-	public Account(String username, String password, String type) {
-		this.username = username;
-		this.password = password;
-		this.balance = 0.00;
-		this.type = type;
-		this.rewardsPoints = 0;
-		this.purchaseHistory = new ArrayList<Ticket>();
+	//default constructor for an account is a builder
+	private Account(AccountBuilder builder) {
+		this.username = builder.username;
+		this.password = builder.password;
+		this.balance = builder.balance;
+		this.type = builder.type;
+		this.rewardsPoints = builder.rewardsPoints;
+		this.purchaseHistory = builder.purchaseHistory;
+	}
+	public static class AccountBuilder{
+		private String username;
+		private String password;
+		private String type;
+		private double balance = 0.0;
+		private int rewardsPoints = 0;
+		private List<Ticket> purchaseHistory = new ArrayList<Ticket>();
+
+		public AccountBuilder(String username, String password){
+			this.username = username;
+			this.password = password;
+		}
+
+		public AccountBuilder type(String type){
+			this.type = type;
+			return this;
+		}
+
+		public AccountBuilder balance(int bal){
+			this.balance = bal;
+			return this;
+		}
+
+		public Account build(){
+			return new Account(this);
+		}
 	}
 	/*
 	 * add ticket to account
