@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 
 public class Theater{
-	private String theaterID;
+	private String id;
 	private Seat[][] seatingChart;
 	private static final File settings = new File("theater_settings.txt");
 	private int defaultRows = 10;
@@ -15,18 +15,18 @@ public class Theater{
 	 *constructors 
 	 */
 	public Theater(String id, Seat[][] seatingChart) {
-		this.theaterID = id;
+		this.id = id;
 		this.seatingChart = seatingChart;
 	}
 	//create theater with default seating chart
 	public Theater(String id) {
-		this.theaterID = id;
+		this.id = id;
 		readTheaterSettings();
 		this.seatingChart = new Seat[defaultRows][defaultCols];
 	}
 	//return theater ID
 	public String getTheaterID(){
-		return theaterID;
+		return id;
 	}
 	/*
 	 * check if theater has empty seatsl
@@ -56,7 +56,7 @@ public class Theater{
 	public String toString() {
 		StringBuilder sout = new StringBuilder();
 		sout.append("***********************************"  + "\n");
-		sout.append("       THEATER " + theaterID 		   + "\n"); 
+		sout.append("       THEATER " + id 		   + "\n"); 
 		sout.append("***********************************"  + "\n");
 		for(Seat[] row : seatingChart){
 			sout.append(row + "\n");

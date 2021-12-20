@@ -33,6 +33,12 @@ public class Account{
 			this.password = password;
 		}
 
+		public AccountBuilder(){
+			this.username = "Guest";
+			this.password = "Guest";
+			this.type = "Guest";
+		}
+
 		public AccountBuilder type(String type){
 			this.type = type;
 			return this;
@@ -59,6 +65,10 @@ public class Account{
 	}
 	public String getType(){
 		return type;
+	}
+
+	public String getUsername(){
+		return username;
 	}
 
 	@Override
