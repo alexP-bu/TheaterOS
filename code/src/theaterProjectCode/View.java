@@ -48,6 +48,7 @@ public class View {
 		for (int i = 0; i < 40; i++) {
 			System.out.print("*");
 		}
+		System.out.println("\n");
 		System.out.println("If you want to login to an existing account\n Please enter \"login\" as a command");
 		System.out.println("If you want to continue as a Guest\n Please enter \"guest\" as a command");
 		System.out.println("For a list of all commands\n Please enter \"main\" as a command");
