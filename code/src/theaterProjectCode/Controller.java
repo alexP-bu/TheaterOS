@@ -199,7 +199,7 @@ public class Controller {
 			returning();
 			break;
 		case "main":
-			UserInterface.printInstructions();
+			View.printInstructions();
 			System.out.println("Enter \"exit\" to exit the program");
 			break;
 		case "purchaseTicket":
