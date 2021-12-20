@@ -28,7 +28,7 @@ public class View {
 			// check for valid user input command
 			if (commandManager.validateCommand(command)) {
 				System.out.println("Valid Command! Running...");
-				commandManager.runCommand(command);
+				commandManager.run(command);
 			} else {
 				System.out.println("Invalid command entered. Please try again.");
 			}
