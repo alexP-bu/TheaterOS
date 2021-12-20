@@ -12,9 +12,13 @@ public class Seat{
 	public boolean isReserved() {
 		return isReserved;
 	}
-	//setter for reserved
-	public void reserve(boolean reserved){
-		isReserved = reserved;
+	//setter for reserving
+	public void reserve(){
+		isReserved = true;
+	}
+	//setter for unreserving
+	public void unreserve(){
+		isReserved = false;
 	}
 	
 	@Override
