@@ -2,7 +2,7 @@ package theaterProjectCode;
 
 import java.util.Scanner;
 
-public class UserInterface {
+public class View {
 
 	private static Scanner reader = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class UserInterface {
 				"clearTheatersData", "clearShowtimesData", "updateAccountData", "updateTheatersData",
 				"updateShowtimesData", "exit", "main","addBalance" };
 		//init command manager
-		CommandManager commandManager = new CommandManager(commandList);
+		Controller commandManager = new Controller(commandList);
 		String command = "";
 		printWelcomeMessage();
 		/*
