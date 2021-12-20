@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Showtime{
-	private String name;
+	private String id;
 	private Movie movie;
 	private Date date;
 	private double price;
@@ -12,7 +12,7 @@ public class Showtime{
 	 * constructors
 	 */
 	private Showtime(ShowtimeBuilder builder) {
-		this.name = builder.name;
+		this.id = builder.id;
 		this.movie = builder.movie;
 		this.date = builder.date;
 		this.theaters = builder.theaters;
@@ -20,14 +20,14 @@ public class Showtime{
 	}
 	//showtime builder class
 	public static class ShowtimeBuilder{
-		private String name;
+		private String id;
 		private Movie movie;
 		private Date date;
 		private double price;
 		private Map<String,Theater> theaters;
 
 		public ShowtimeBuilder(String name){
-			this.name = name;
+			this.id = name;
 		}
 
 		public ShowtimeBuilder movie(Movie movie){
@@ -62,6 +62,9 @@ public class Showtime{
 	 */
 	public boolean isListed(String id) {
 		return theaters.containsKey(id);
+	}
+	public String getID(){
+		return id;
 	}
 	/*
 	 * return string containing theater list for this showtime

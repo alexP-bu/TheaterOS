@@ -3,6 +3,8 @@ package theaterProjectCode;
 import java.util.HashMap;
 import java.util.Map;
 
+import theaterProjectCode.Showtime.ShowtimeBuilder;
+
 public class Model {
     private Map<String,Showtime> showtimes;
     private Map<String,Theater> theaters;
@@ -36,7 +38,6 @@ public class Model {
         }
         return sout.toString();
     }
-    //attempt to login account, return true on success false otherwise
     public boolean attemptLogin(String username, String password){
         if(accounts.containsKey(username) && accounts.get(username).getPassword().equals(password) 
         && loggedIn.getType().equals("Guest")){
@@ -45,7 +46,6 @@ public class Model {
         }
         return false;
     }
-    //logout whatever account is logged in and login as guest
     public void logout(){
         createGuest();
         loggedIn = accounts.get("Guest");
@@ -57,7 +57,6 @@ public class Model {
             accounts.put("Guest", new Account.AccountBuilder().type("Guest").build());
         }
     }
-    //create a customer account, return true on successful creation, false otherwise
     public boolean createCustomer(String username, String password){
         if(!accounts.containsKey(username)){
             accounts.put(username, new Account.AccountBuilder(username,password).type("Customer").build());
@@ -65,7 +64,6 @@ public class Model {
         }
         return false;
     }
-    //create a employee account, return true on successful creation, false otherwise
     public boolean createEmployee(String username, String password){
         if(!accounts.containsKey(username)){
             accounts.put(username, new Account.AccountBuilder(username,password).type("Employee").build());
@@ -73,7 +71,6 @@ public class Model {
         }
         return false;
     }
-    //create an administrator account, return true on successful creation, false otherwise
     public boolean createAdmin(String username, String password){
         if(!accounts.containsKey(username)){
             accounts.put(username, new Account.AccountBuilder(username,password).type("Administrator").build());
@@ -81,7 +78,6 @@ public class Model {
         }
         return false;
     }
-    //delete an account from the system
     //account can only be deleted if the current user is logged in or is an administrator
     public boolean deleteAccount(String username){
         if(loggedIn.getUsername().equals(username) || loggedIn.getType().equals("Administrator") 
@@ -91,7 +87,7 @@ public class Model {
         }
         return false;
     }
-    //create a new theater - on success return true; else false
+    //theater functions
     public boolean createTheater(String id, int rows, int cols){
         if(!theaters.containsKey(id)){
             theaters.put(id, new Theater(id, rows, cols));
@@ -99,7 +95,6 @@ public class Model {
         }
         return false;
     }
-    //delete theater by id - on success return true, else false
     public boolean deleteTheater(String id){
         if(theaters.containsKey(id)){
             theaters.remove(id);
@@ -107,7 +102,6 @@ public class Model {
         }
         return false;
     }
-    //reserve seat in theater system
     public boolean reserveSeat(Theater theater, int row, int col){
         if(theaters.containsKey(theater.getTheaterID()) 
         && theaters.get(theater.getTheaterID()).hasEmptySeats()){
@@ -116,7 +110,20 @@ public class Model {
         }
         return false;
     }
-    public boolean createShowtime(){
-        
+    //showtime functions
+    public boolean createShowtime(String id){
+        if(!showtimes.containsKey(id)){
+            Showtime newShowtime = new ShowtimeBuilder(id).build();
+            showtimes.put(newShowtime.getID(), newShowtime);
+            return true;
+        }
+        return false;
+    }
+    public boolean deleteShowtime(String id){
+        if(showtimes.containsKey(id)){
+            showtimes.remove(id);
+            return true;
+        }
+        return false;
     }
 }

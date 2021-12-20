@@ -2,7 +2,7 @@ package theaterProjectCode;
 
 import java.util.HashSet;
 
-public class CommandManager {
+public class Controller {
 
 	private HashSet<String> commandList;
 	private AccountManager accountManager;
@@ -14,7 +14,7 @@ public class CommandManager {
 	/*
 	 * default blank command manager
 	 */
-	public CommandManager() {
+	public Controller() {
 		commandList = new HashSet<String>();
 		accountManager = new AccountManager();
 		theaterManager = new TheaterManager();
@@ -23,7 +23,7 @@ public class CommandManager {
 	/*
 	 * initialize commandManager with a list of commands
 	 */
-	public CommandManager(String[] commands) {
+	public Controller(String[] commands) {
 		commandList = new HashSet<String>();
 		for (String command : commands) {
 			commandList.add(command);
