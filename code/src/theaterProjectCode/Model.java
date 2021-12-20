@@ -3,8 +3,6 @@ package theaterProjectCode;
 import java.util.HashMap;
 import java.util.Map;
 
-import theaterProjectCode.Account.AccountBuilder;
-
 public class Model {
     private Map<String,Showtime> showtimes;
     private Map<String,Theater> theaters;
@@ -25,7 +23,7 @@ public class Model {
     }
 
     //return string which lists items in system
-    public String stringMap(Map<String,Object> inputMap){
+    public String listItems(Map<String,Object> inputMap){
         StringBuilder sout = new StringBuilder();
         if(inputMap.isEmpty()){
             sout.append("There are no ").append(inputMap.getClass()).append(" in the system!");
@@ -93,8 +91,32 @@ public class Model {
         }
         return false;
     }
-    //create a new theater
-    public boolean createTheater(){
+    //create a new theater - on success return true; else false
+    public boolean createTheater(String id, int rows, int cols){
+        if(!theaters.containsKey(id)){
+            theaters.put(id, new Theater(id, rows, cols));
+            return true;
+        }
+        return false;
+    }
+    //delete theater by id - on success return true, else false
+    public boolean deleteTheater(String id){
+        if(theaters.containsKey(id)){
+            theaters.remove(id);
+            return true;
+        }
+        return false;
+    }
+    //reserve seat in theater system
+    public boolean reserveSeat(Theater theater, int row, int col){
+        if(theaters.containsKey(theater.getTheaterID()) 
+        && theaters.get(theater.getTheaterID()).hasEmptySeats()){
+            theaters.get(theater.getTheaterID()).reserve(row, col);
+            return true;
+        }
+        return false;
+    }
+    public boolean createShowtime(){
         
     }
 }
