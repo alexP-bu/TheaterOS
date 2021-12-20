@@ -3,18 +3,59 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Showtime{
+	private String name;
 	private Movie movie;
 	private Date date;
-	private Map<String,Theater> theaters;
 	private double price;
+	private Map<String,Theater> theaters;
 	/*
 	 * constructors
 	 */
-	public Showtime(Movie movie, Date date, Map<String,Theater> theaters, double price) {
-		this.movie = movie;
-		this.date = date;
-		this.theaters = new HashMap<String,Theater>(theaters);
-		this.price = price;
+	private Showtime(ShowtimeBuilder builder) {
+		this.name = builder.name;
+		this.movie = builder.movie;
+		this.date = builder.date;
+		this.theaters = builder.theaters;
+		this.price = builder.price;
+	}
+	//showtime builder class
+	public static class ShowtimeBuilder{
+		private String name;
+		private Movie movie;
+		private Date date;
+		private double price;
+		private Map<String,Theater> theaters;
+
+		public ShowtimeBuilder(String name){
+			this.name = name;
+		}
+
+		public ShowtimeBuilder movie(Movie movie){
+			this.movie = movie;
+			return this;
+		}
+
+		public ShowtimeBuilder date(Date date){
+			this.date = date;
+			return this;
+		}
+
+		public ShowtimeBuilder price(double price){
+			this.price = price;
+			return this;
+		}
+
+		public ShowtimeBuilder addTheater(Theater theater){
+			if(this.theaters == null){
+				this.theaters = new HashMap<String,Theater>();
+			}
+			this.theaters.put(theater.getTheaterID(), theater);
+			return this;
+		}
+
+		public Showtime build(){
+			return new Showtime(this);
+		}
 	}
 	/*
 	 * check if theater is listed in theater list
