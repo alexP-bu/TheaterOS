@@ -49,10 +49,10 @@ public class View {
 			System.out.print("*");
 		}
 		System.out.println("\n");
-		System.out.println("If you want to login to an existing account\n Please enter \"login\" as a command");
-		System.out.println("If you want to continue as a Guest\n Please enter \"guest\" as a command");
-		System.out.println("For a list of all commands\n Please enter \"main\" as a command");
-		System.out.println("Waiting for command input...");
+		System.out.println("If you want to login to an existing account\n Please enter \"login\" as a command\n");
+		System.out.println("If you want to continue as a Guest\n Please enter \"guest\" as a command\n");
+		System.out.println("For a list of all commands\n Please enter \"main\" as a command\n");
+		System.out.println("Waiting for command input...\n");
 	}
 	/*
 	 * instructions print

@@ -16,4 +16,5 @@ public class Controller {
 	public boolean validateCommand(String command) {
 		return commandList.contains(command);
 	}
+	//TODO: run command
 }
