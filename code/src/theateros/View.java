@@ -10,13 +10,14 @@ public class View {
 		/*
 		 * initialize system objects
 		 */
-		String[] commandList = { "login", "logout", "newAccount", "newEmployee", "newAdmin", "newTheater",
-				"newShowtime", "deleteAccount", "deleteTheater", "deleteShowtime", "listAccounts", "listTheaters",
-				"listShowtimes", "viewAccount", "viewTheater", "viewShowtime", "purchaseTicket", "clearAccountsData",
-				"clearTheatersData", "clearShowtimesData", "updateAccountData", "updateTheatersData",
-				"updateShowtimesData", "exit", "main","addBalance" };
-		//init command manager
-		Controller commandManager = new Controller(commandList);
+		String[] commandList = {
+				"newAccount", "newEmployee", "newAdmin", "newTheater","newShowtime","deleteAccount", "deleteTheater", "deleteShowtime",
+				"listAccounts", "listTheaters","listShowtimes", "viewAccount", "viewTheater", "viewShowtime","purchaseTicket","addBalance",
+				"clearAccountsData","clearTheatersData", "clearShowtimesData", "updateAccountData", "updateTheatersData","updateShowtimesData", 
+				"login", "logout","exit","help"
+								};
+		Controller controller = new Controller(commandList);
+		Model model = new Model();
 		String command = "";
 		printWelcomeMessage();
 		/*
@@ -26,9 +27,10 @@ public class View {
 			command = reader.nextLine();
 			System.out.printf("The command you entered is: %s %n", command);
 			// check for valid user input command
-			if (commandManager.validateCommand(command)) {
+			if (controller.validateCommand(command)) {
 				System.out.println("Valid Command! Running...");
 				//run command
+				controller.run(model, command);
 			} else {
 				System.out.println("Invalid command entered. Please try again.");
 			}
@@ -65,7 +67,7 @@ public class View {
                         / newAccount     / listAccounts   / clearAccountsData  / login  /
                        / newAdmin       / listTheaters   / clearTheatersData  / logout /
                       / newEmployee    / listShowtimes  / clearShowtimesData / exit   /
-                     / newTheater     / viewAccount    / updateAccountsData /        /
+                     / newTheater     / viewAccount    / updateAccountsData / help   /
                     / newShowtime    / viewTheater    / updateTheatersData /        /
                    / deleteAccount  / viewShowtime   /updateShowtimesData /        /
                   / deleteTheater  / purchaseTicket /                    /        /
