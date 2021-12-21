@@ -16,5 +16,11 @@ public class Controller {
 	public boolean validateCommand(String command) {
 		return commandList.contains(command);
 	}
-	//TODO: run command
+	//run command
+	public void run(Model model, String command) {
+		switch(command){
+			case ""
+
+		}
+	}
 }
