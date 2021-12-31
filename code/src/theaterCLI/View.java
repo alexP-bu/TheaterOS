@@ -19,7 +19,7 @@ public class View {
 			command = reader.nextLine();
 			System.out.printf("The command you entered is: %s %n", command);
 			controller.interpret(command);
-			System.out.println("Command interpreted. Waiting for next command.");
+			System.out.println("Waiting for next command.");
 		} while (!command.equals("exit"));
 		//exit command was entered, exit the system
 		System.out.println("Goodbye.");
@@ -29,7 +29,7 @@ public class View {
 
 
 	/*
-	 * method for initial print
+	 * method for printing welcome message
 	 */
 	public static void printWelcomeMessage() {
 		for (int i = 0; i < 40; i++) {
@@ -44,24 +44,5 @@ public class View {
 		System.out.println("To login to an existing account,please enter \"login\".");
 		System.out.println("For a list of all commands, please enter \"help\".");
 		System.out.println("Waiting for command input...\n");
-	}
-	/*
-	 * instructions print
-	 */
-	public static void printInstructions() {
-		System.out.println();
-		System.out.println("Commands currently available:");
-		String str = """
-                         ________________________________________________________________
-                        / newCustomer    / listAccounts   / clearAccountsData  / login  /
-                       / newAdmin       / listTheaters   / clearTheatersData  / logout /
-                      / newEmployee    / listShowtimes  / clearShowtimesData / exit   /
-                     / newTheater     / viewAccount    / updateAccountsData / help   /
-                    / newShowtime    / viewTheater    / updateTheatersData /        /
-                   / deleteAccount  / viewShowtime   /updateShowtimesData /        /
-                  / deleteTheater  / purchaseTicket /                    /        /
-                 / deleteShowtime / addBalance     /                    /        /
-                /________________/________________/____________________/________/          """;
-		System.out.println(str);
 	}
 }

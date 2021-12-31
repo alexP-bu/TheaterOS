@@ -37,6 +37,10 @@ public class Controller {
 		this.commandList.put("updateAccountData", new updateAccountData());
 		this.commandList.put("updateShowtimeData", new updateShowtimeData());
 		this.commandList.put("updateTheaterData", new updateTheaterData());
+		this.commandList.put("login", new login());
+		this.commandList.put("logout", new logout());
+		this.commandList.put("exit", new exit());
+		this.commandList.put("help", new help());
 	}
 
 	public void interpret(String command) {
@@ -44,18 +48,17 @@ public class Controller {
 		if(!commandList.containsKey(command)){
 			System.out.println("Invalid command entered! Please type \"help\" for a list of commands.");
 		}else{
-			String[] params = parse(command);
-			runCommand(command, model, params);
+			//parse arguments out of command
+			String[] parsedCommand = command.split(" ", 2);
+			if(parsedCommand.length == 1){
+				runCommand(command, model, null);
+			}else{
+				runCommand(command, model, parsedCommand[1].split(" ", 2));
+			}
 		}
 	}
 
 	private void runCommand(String command, Model model, String[] params){
 		commandList.get(command).execute(model, params);
-	}
-
-	private String[] parse(String command){
-		//parse out command
-		String[] out = command.split(" ", 2);
-		return out[1].split(" "); 
 	}
 }

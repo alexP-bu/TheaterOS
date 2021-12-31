@@ -192,3 +192,46 @@ class updateTheaterData implements Command{
         //TODO
     }
 }
+
+class login implements Command{
+    public void execute(Model model, String[] params){
+        //TODO
+    }
+}
+
+class logout implements Command{
+    public void execute(Model model, String[] params){
+        //TODO
+    }
+}
+
+class exit implements Command{
+    public void execute(Model model, String[] params){
+        //TODO
+    }
+}
+
+class help implements Command{
+    public void execute(Model model, String[] params){
+        printHelp();
+    }
+
+    public static void printHelp() {
+        System.out.println();
+        System.out.println("Commands currently available:");
+        String str = """
+                         ________________________________________________________________
+                        / newCustomer    / listAccounts   / clearAccountsData  / login  /
+                       / newAdmin       / listTheaters   / clearTheatersData  / logout /
+                      / newEmployee    / listShowtimes  / clearShowtimesData / exit   /
+                     / newTheater     / viewAccount    / updateAccountsData / help   /
+                    / newShowtime    / viewTheater    / updateTheatersData /        /
+                   / deleteAccount  / viewShowtime   /updateShowtimesData /        /
+                  / deleteTheater  / purchaseTicket /                    /        /
+                 / deleteShowtime / addBalance     /                    /        /
+                /________________/________________/____________________/________/          """;
+        System.out.println(str);
+    }
+}
+
+
