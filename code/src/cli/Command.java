@@ -117,7 +117,7 @@ class listShowtimes implements Command{
 class viewAccount implements Command{
     public void execute(Model model, String[] params){
         System.out.println("Retrieving account data...");
-        if(!model.getloggedIn().equals("Guest")){
+        if(!model.getloggedIn().getUsername().equals("Guest")){
             System.out.println(model.getloggedIn().toString());
         }else{
             System.out.println("No account currently logged in!");
