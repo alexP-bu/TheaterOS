@@ -23,21 +23,7 @@ public class Model {
         //set logged in to guest at init
         loggedIn = accounts.get("Guest");
     }
-
-    //return string which lists items in system
-    public String listItems(Map<String,Object> inputMap){
-        StringBuilder sout = new StringBuilder();
-        if(inputMap.isEmpty()){
-            sout.append("There are no ").append(inputMap.getClass()).append(" in the system!");
-        }else{
-            for(String id : inputMap.keySet()){
-                sout.append(id + ", ");
-            }
-            //remove trailing comma and space
-            sout.substring(0, sout.length() - 2);
-        }
-        return sout.toString();
-    }
+    //attempt login with given username and password
     public boolean attemptLogin(String username, String password){
         if(accounts.containsKey(username) && accounts.get(username).getPassword().equals(password) 
         && loggedIn.getType().equals("Guest")){
@@ -125,5 +111,21 @@ public class Model {
             return true;
         }
         return false;
+    }
+    //getter for accounts map
+    public Map<String,Account> getAccounts(){
+        return accounts;
+    }
+    //getter for theaters map
+    public Map<String,Theater> getTheaters(){
+        return theaters;
+    }
+    //getter for showtimes map
+    public Map<String,Showtime> getShowtimes(){
+        return showtimes;
+    }
+    //getter for currently logged in account
+    public Account getloggedIn(){
+        return loggedIn;
     }
 }

@@ -3,20 +3,13 @@ package theateros;
 import java.util.Scanner;
 
 public class View {
-
 	private static Scanner reader = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		/*
 		 * initialize system objects
 		 */
-		String[] commandList = {
-				"newAccount", "newEmployee", "newAdmin", "newTheater","newShowtime","deleteAccount", "deleteTheater", "deleteShowtime",
-				"listAccounts", "listTheaters","listShowtimes", "viewAccount", "viewTheater", "viewShowtime","purchaseTicket","addBalance",
-				"clearAccountsData","clearTheatersData", "clearShowtimesData", "updateAccountData", "updateTheatersData","updateShowtimesData", 
-				"login", "logout","exit","help"
-								};
-		Controller controller = new Controller(commandList);
+		Controller controller = new Controller();
 		Model model = new Model();
 		String command = "";
 		printWelcomeMessage();
@@ -30,15 +23,16 @@ public class View {
 			if (controller.validateCommand(command)) {
 				System.out.println("Valid Command! Running...");
 				//run command
-				controller.run(model, command);
+				controller.runCommand(command, model, params);
 			} else {
 				System.out.println("Invalid command entered. Please try again.");
 			}
 		} while (!command.equals("exit"));
-
 		System.out.println("Goodbye.");
 		reader.close();
 	}
+
+
 	/*
 	 * method for initial print
 	 */
@@ -64,7 +58,7 @@ public class View {
 		System.out.println("Commands currently available:");
 		String str = """
                          ________________________________________________________________
-                        / newAccount     / listAccounts   / clearAccountsData  / login  /
+                        / newCustomer    / listAccounts   / clearAccountsData  / login  /
                        / newAdmin       / listTheaters   / clearTheatersData  / logout /
                       / newEmployee    / listShowtimes  / clearShowtimesData / exit   /
                      / newTheater     / viewAccount    / updateAccountsData / help   /
@@ -74,5 +68,17 @@ public class View {
                  / deleteShowtime / addBalance     /                    /        /
                 /________________/________________/____________________/________/          """;
 		System.out.println(str);
+	}
+
+	//method to get valid username and password from user
+	private String[] getUserAccountInput(){
+		String [] input = {"",""};
+		while(input[0].equals("") || input[1].equals("")){
+			System.out.println("Please enter a username: ");
+			input[0] = reader.nextLine();
+			System.out.println("Please enter a password: ");
+			input[1] = reader.nextLine();
+		}	
+			return input;
 	}
 }
