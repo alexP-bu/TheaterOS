@@ -1,22 +1,22 @@
-package cli;
+ package cli;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import cli.Showtime.ShowtimeBuilder;
 
 public class Model {
-    private Map<String,Showtime> showtimes;
+    private Map<Integer,Showtime> showtimes;
     private Map<String,Theater> theaters;
     private Map<String,Account> accounts;
-
     private Account loggedIn;
+    private int numShowtimes;
 
     public Model(){
         //initalize model lists
-        this.showtimes = new HashMap<String,Showtime>();
+        this.showtimes = new HashMap<Integer,Showtime>();
         this.theaters = new HashMap<String,Theater>();
         this.accounts = new HashMap<String,Account>();
+        numShowtimes = 0;
         //TODO import data from databases
         //create guest account if it isn't made yet
         createGuest();
@@ -50,13 +50,18 @@ public class Model {
         }
         return false;
     }
+    //only admin can create employee accounts
     public boolean createEmployee(String username, String password){
+        if(!loggedIn.getType().equals("Administrator")){
+            return false;
+        }
         if(!accounts.containsKey(username)){
             accounts.put(username, new Account.AccountBuilder(username,password).type("Employee").build());
             return true;
         }
         return false;
     }
+    //only admin can create more admin accounts
     public boolean createAdmin(String username, String password){
         if(!accounts.containsKey(username)){
             accounts.put(username, new Account.AccountBuilder(username,password).type("Administrator").build());
@@ -97,17 +102,19 @@ public class Model {
         return false;
     }
     //showtime functions
-    public boolean createShowtime(String id){
+    public boolean createShowtime(int id){
         if(!showtimes.containsKey(id)){
             Showtime newShowtime = new ShowtimeBuilder(id).build();
             showtimes.put(newShowtime.getID(), newShowtime);
+            numShowtimes++;
             return true;
         }
         return false;
     }
-    public boolean deleteShowtime(String id){
+    public boolean deleteShowtime(int id){
         if(showtimes.containsKey(id)){
             showtimes.remove(id);
+            numShowtimes--;
             return true;
         }
         return false;
@@ -121,7 +128,7 @@ public class Model {
         return theaters;
     }
     //getter for showtimes map
-    public Map<String,Showtime> getShowtimes(){
+    public Map<Integer,Showtime> getShowtimes(){
         return showtimes;
     }
     //getter for currently logged in account

@@ -1,35 +1,48 @@
 package cli;
 
+import java.util.Scanner;
+
 public interface Command {
     void execute(Model model, String[] params);
 }
-
 class newCustomer implements Command{
     public void execute(Model model, String[] params){
-        if(model.createCustomer(params[0], params[1])){
-            System.out.println("Sucessfully created account!");
+        if(params[0].equals("") || params[1].equals("")){
+            System.out.println("Error creating account. Please enter valid command parameters.");
         }else{
-            System.out.println("Error creating account.");
+            if(model.createCustomer(params[0], params[1])){
+                System.out.println("Sucessfully created account!");
+            }else{
+                System.out.println("Error creating account. Please choose a different username.");
+            }
         }
     }
 }
 
 class newEmployee implements Command{
     public void execute(Model model, String[] params){
-        if(model.createCustomer(params[0], params[1])){
-            System.out.println("Sucessfully created account!");
+        if(params[0].equals("") || params[1].equals("")){
+            System.out.println("Error creating account. Please enter valid command parameters.");
         }else{
-            System.out.println("Error creating account.");
+            if(model.createCustomer(params[0], params[1])){
+                System.out.println("Sucessfully created account!");
+            }else{
+                System.out.println("Please choose a different username, or verify you are an administrator.");
+            }
         }
     }
 }
 
 class newAdmin implements Command{
     public void execute(Model model, String[] params){
-        if(model.createAdmin(params[0], params[1])){
-            System.out.println("Sucessfully created account!");
+        if(params[0].equals("") || params[1].equals("")){
+            System.out.println("Error creating account. Please enter valid command parameters.");
         }else{
-            System.out.println("Error creating account.");
+            if(model.createAdmin(params[0], params[1])){
+                System.out.println("Sucessfully created account!");
+            }else{
+                System.out.println("Please choose a different username, or verify you are an administrator.");
+            }
         }
     }
 }
@@ -46,6 +59,7 @@ class newTheater implements Command{
 
 class newShowtime implements Command{
     public void execute(Model model, String[] params){
+        //set internal ID for showtime
         if(model.createShowtime(params[0])){
             System.out.println("Sucessfully created showtime!");
         }else{

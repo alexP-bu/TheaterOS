@@ -51,7 +51,8 @@ public class Controller {
 			//parse arguments out of command
 			String[] parsedCommand = command.split(" ", 2);
 			if(parsedCommand.length == 1){
-				runCommand(command, model, null);
+				String[] params = {""};
+				runCommand(command, model, params);
 			}else{
 				runCommand(command, model, parsedCommand[1].split(" ", 2));
 			}
